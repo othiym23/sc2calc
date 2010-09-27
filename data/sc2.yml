@@ -1,0 +1,1542 @@
+--- # Starcraft 2 data dump
+protoss:
+  weapons:
+    - id: pwp
+      name: Particle Beam
+      category: weapon
+      damage: 5
+      attacks: 1
+      speed: 1.5
+      range: melee
+      targets:
+        - ground
+      depends:
+        - pup
+    - id: pwb
+      name: Psi Blades
+      category: weapon
+      damage: 8
+      attacks: 2
+      speed: 1.2
+      range: melee
+      targets:
+        - ground
+      depends:
+        - puz
+    - id: pwh
+      name: Photon Cannons
+      category: weapon
+      damage: 20
+      attacks: 1
+      speed: 1.25
+      range: 7
+      targets:
+        - air
+        - ground
+      depends:
+        - pbc
+    - id: pwd
+      name: Particle Disrupters
+      category: weapon
+      damage: 10
+      attacks: 1
+      speed: 1.44
+      range: 6
+      targets:
+        - air
+        - ground
+      depends:
+        - pus
+    - id: pwe
+      name: Disruption Beam
+      category: weapon
+      damage: 6
+      attacks: 1
+      speed: 1
+      range: 5
+      targets:
+        - air
+        - ground
+      depends:
+        - pue
+    - id: pww
+      name: Warp Blades
+      category: weapon
+      damage: 45
+      attacks: 1
+      speed: 1.69
+      range: melee
+      targets:
+        - ground
+      depends:
+        - pud
+  buildings:
+    - id: pbn
+      name: Nexus
+      short: N
+      category: building
+      minerals: 400
+      gas: 0
+      time: 100
+      hp: 750
+      shield: 750
+      armor: 1
+      abilities:
+        - pab
+      builds:
+        - pup
+        - pum
+      types:
+        - basic
+        - economic
+        - producer
+      builder: pup
+      depends:
+        - pup
+    - id: pba
+      name: Assimilator
+      short: A
+      category: building
+      minerals: 75
+      gas: 0
+      time: 30
+      hp: 450
+      shield: 450
+      armor: 1
+      builder: pup
+      depends:
+        - pup
+      types:
+        - basic
+        - economic
+        - refiner
+    - id: pbe
+      name: Pylon
+      short: E
+      category: building
+      minerals: 100
+      gas: 0
+      time: 25
+      hp: 200
+      shield: 200
+      armor: 1
+      builder: pup
+      depends:
+        - pup
+      provides: 8
+      types:
+        - basic
+        - economic
+        - supplier
+    - id: pby
+      name: Cybernetics Core
+      short: Y
+      category: building
+      minerals: 150
+      gas: 0
+      time: 50
+      hp: 550
+      shield: 550
+      armor: 1
+      builder: pup
+      depends:
+        - pbg
+      types:
+        - military
+        - upgrader
+    - id: pbf
+      name: Forge
+      short: F
+      category: building
+      minerals: 150
+      gas: 0
+      time: 45
+      hp: 400
+      shield: 400
+      armor: 1
+      builder: pup
+      depends:
+        - pbn
+        - pbe
+      types:
+        - military
+        - upgrader
+    - id: pbc
+      name: Photon Cannon
+      short: C
+      category: building
+      minerals: 150
+      gas: 0
+      time: 40
+      hp: 150
+      shield: 150
+      armor: 1
+      builder: pup
+      depends:
+        - pup
+        - pbf
+        - pbe
+      weapons:
+        - pwh
+      types:
+        - military
+        - defensive
+    - id: pbg
+      name: Gateway
+      short: G
+      category: building
+      minerals: 150
+      gas: 0
+      time: 65
+      hp: 500
+      shield: 500
+      armor: 1
+      builder: pup
+      depends:
+        - pbe
+        - pup
+      builds:
+        - puz
+        - pue
+        - pus
+        - put
+        - pud
+      types:
+        - basic
+        - producer
+        - military
+    - id: pvc
+      name: Twilight Council
+      category: building
+      short: L
+      minerals: 150
+      gas: 100
+      time: 50
+      hp: 500
+      shield: 500
+      armor: 1
+      builder: pup
+      depends:
+        - pby
+      provides:
+        - ppb
+        - ppc
+    - id: pvt
+      name: Templar Archives
+      category: building
+      short: T
+      minerals: 150
+      gas: 200
+      time: 50
+      hp: 500
+      shield: 500
+      armor: 1
+      builder: pup
+      depends:
+        - pup
+        - pbe
+        - pvc
+      provides:
+        - ppi
+        - ppk
+    - id: pvd
+      name: Dark Shrine
+      category: building
+      short: D
+      minerals: 100
+      gas: 250
+      time: 100
+      hp: 500
+      shield: 500
+      armor: 1
+      builder: pup
+      depends:
+        - pup
+        - pbe
+        - pvc
+    - id: pvb
+      name: Robotics Bay
+      category: building
+      short: R
+      minerals: 200
+      gas: 200
+      time: 65
+      hp: 500
+      shield: 500
+      armor: 1
+      types:
+        - producer
+      builder: pup
+      depends:
+        - pbe
+        - pvr
+    - id: pvf
+      name: Fleet Beacon
+      category: building
+      short: B
+      minerals: 300
+      gas: 200
+      time: 60
+      hp: 500
+      shield: 500
+      armor: 1
+      builder: pup
+      depends:
+        - pvs
+    - id: pvr
+      name: Robotics Facility
+      category: building
+      short: O
+      minerals: 200
+      gas: 100
+      time: 65
+      hp: 450
+      shield: 450
+      armor: 1
+      builder: pup
+      depends:
+        - pbe
+        - pby
+    - id: pvs
+      name: Stargate
+      category: building
+      short: S
+      minerals: 150
+      gas: 150
+      time: 60
+      hp: 600
+      shield: 600
+      armor: 1
+      builder: pup
+      depends:
+        - pby
+      types:
+        - producer
+  upgrades:
+    - id: ppb
+      name: Blink upgrade
+      category: upgrade
+      builder: pvc
+      depends:
+        - pvc
+      minerals: 150
+      gas: 150
+      time: 110
+    - id: ppc
+      name: Charge upgrade
+      category: upgrade
+      builder: pvc
+      depends:
+        - pvc
+      minerals: 200
+      gas: 200
+      time: 140
+    - id: pph
+      name: Hallucination upgrade
+      category: upgrade
+      builder: pby
+      depends:
+        - pby
+      minerals: 100
+      gas: 100
+      time: 110
+    - id: ppw
+      name: Warp Gate
+      category: upgrade
+      builder: pby
+      depends:
+        - pby
+      minerals: 50
+      gas: 50
+      time: 140
+    - id: ppaw1
+      name: Air Weapons Level 1
+      category: upgrade
+      builder: pby
+      depends:
+        - pby
+      minerals: 100
+      gas: 100
+      time: 140
+    - id: ppaw2
+      name: Air Weapons Level 2
+      category: upgrade
+      builder: pby
+      depends:
+        - pby
+        - pvf
+        - ppaw1
+      minerals: 175
+      gas: 175
+      time: 170
+    - id: ppaw3
+      name: Air Weapons Level 3
+      category: upgrade
+      builder: pby
+      depends:
+        - pby
+        - pvf
+        - ppaw2
+      minerals: 250
+      gas: 250
+      time: 200
+    - id: ppaa1
+      name: Air Armor Level 1
+      category: upgrade
+      builder: pby
+      depends:
+        - pby
+      minerals: 150
+      gas: 150
+      time: 140
+    - id: ppaa2
+      name: Air Armor Level 2
+      category: upgrade
+      builder: pby
+      depends:
+        - pby
+        - pvf
+        - ppaa1
+      minerals: 225
+      gas: 225
+      time: 170
+    - id: ppaa3
+      name: Air Armor Level 3
+      category: upgrade
+      builder: pby
+      depends:
+        - pby
+        - pvf
+        - ppaa2
+      minerals: 300
+      gas: 300
+      time: 200
+    - id: ppgw1
+      name: Ground Weapons Level 1
+      category: upgrade
+      builder: pbf
+      depends:
+        - pbf
+      minerals: 100
+      gas: 100
+      time: 140
+    - id: ppgw2
+      name: Ground Weapons Level 2
+      category: upgrade
+      builder: pbf
+      depends:
+        - pbf
+        - pvc
+        - ppgw1
+      minerals: 175
+      gas: 175
+      time: 190
+    - id: ppgw3
+      name: Ground Weapons Level 3
+      category: upgrade
+      builder: pbf
+      depends:
+        - pbf
+        - pvc
+        - ppgw2
+      minerals: 250
+      gas: 250
+      time: 220
+    - id: ppga1
+      name: Ground Armor Level 1
+      category: upgrade
+      builder: pbf
+      depends:
+        - pbf
+      minerals: 100
+      gas: 100
+      time: 140
+    - id: ppga2
+      name: Ground Armor Level 2
+      category: upgrade
+      builder: pbf
+      depends:
+        - pbf
+        - pvc
+        - ppga1
+      minerals: 175
+      gas: 175
+      time: 190
+    - id: ppga3
+      name: Ground Armor Level 3
+      category: upgrade
+      builder: pbf
+      depends:
+        - pbf
+        - pvc
+        - ppga2
+      minerals: 250
+      gas: 250
+      time: 220
+    - id: pps1
+      name: Shields Level 1
+      category: upgrade
+      builder: pbf
+      short: "1"
+      depends:
+        - pbf
+      minerals: 200
+      gas: 200
+      time: 140
+    - id: pps2
+      name: Shields Level 2
+      category: upgrade
+      builder: pbf
+      short: "2"
+      depends:
+        - pbf
+        - pvc
+        - pps1
+      minerals: 300
+      gas: 300
+      time: 190
+    - id: pps3
+      name: Shields Level 3
+      category: upgrade
+      builder: pbf
+      short: "3"
+      depends:
+        - pbf
+        - pvc
+        - pps2
+      minerals: 400
+      gas: 400
+      time: 220
+    - id: ppgw
+      name: Transform to Warp Gate
+      category: upgrade
+      builder: pby
+      depends:
+        - pbg
+        - ppw
+      minerals: 0
+      gas: 0
+      time: 10
+    - id: ppwg
+      name: Transform to Gateway
+      category: upgrade
+      builder: pby
+      depends:
+        - pbg
+        - ppw
+      minerals: 0
+      gas: 0
+      time: 10
+    - id: ppi
+      name: Psionic Storm
+      category: upgrade
+      builder: pvt
+      depends:
+        - pvt
+      minerals: 200
+      gas: 200
+      time: 110
+    - id: ppk
+      name: Khaydarin Amulet
+      category: upgrade
+      builder: pvt
+      depends:
+        - pvt
+      minerals: 150
+      gas: 150
+      time: 110
+    - id: ppo
+      name: Gravitic Boosters upgrade
+      category: upgrade
+      builder: pvb
+      depends:
+        - pvb
+      minerals: 100
+      gas: 100
+      time: 80
+    - id: ppd
+      name: Gravitic Drive upgrade
+      category: upgrade
+      builder: pvb
+      depends:
+        - pvb
+      minerals: 100
+      gas: 100
+      time: 80
+    - id: ppt
+      name: Extended Thermal Lance upgrade
+      category: upgrade
+      builder: pvb
+      depends:
+        - pvb
+      minerals: 200
+      gas: 200
+      time: 140
+  abilities:
+    - id: pab
+      name: Chrono Boost
+      category: ability
+      range: -1
+      radius: 0
+      autocast: false
+      costs:
+        - type: energy
+          energy: 25
+      depends:
+        - pbn
+    - id: pac
+      name: Charge
+      category: ability
+      type: speed
+      range: 5
+      radius: 0
+      autocast: true
+      depends:
+        - ppc
+        - puz
+      costs:
+        - type: time
+          time: 10
+    - id: pad
+      name: Detector
+      category: ability
+      range: 0
+      radius: 0
+      autocast: false
+      depends:
+        - pub
+      costs:
+        - type: passive
+    - id: pae
+      name: Feedback
+      category: ability
+      type: attack
+      range: 9
+      radius: 0
+      autocast: false
+      depends:
+        - pat
+      costs:
+        - type: energy
+          energy: 50
+    - id: paf
+      name: Force Field
+      category: ability
+      type: shield
+      range: 9
+      radius: 2
+      autocast: false
+      depends:
+        - pue
+      costs:
+        - type: energy
+          energy: 50
+    - id: pag
+      name: Guardian Shield
+      category: ability
+      type: shield
+      range: 0
+      radius: 4
+      autocast: false
+      costs:
+        - type: energy
+          energy: 75
+      depends:
+        - pue
+    - id: pah
+      name: Hallucination abillity
+      category: ability
+      type: special
+      range: 0
+      radius: 0
+      autocast: false
+      costs:
+        - type: energy
+          energy: 100
+      depends:
+        - pph
+        - pue
+    - id: pao
+      name: Gravitic Boosters
+      category: ability
+      type: speed
+      range: 0
+      radius: 0
+      autocast: false
+      costs:
+        - type: passive
+      depends:
+        - ppo
+        - pub
+    - id: par
+      name: Gravitic Drive
+      category: ability
+      type: speed
+      range: 0
+      radius: 0
+      autocast: false
+      costs:
+        - type: passive
+      depends:
+        - ppo
+        - puw
+    - id: pat
+      name: Extended Thermal Lance
+      category: ability
+      type: range
+      range: 0
+      radius: 0
+      autocast: false
+      costs:
+        - type: passive
+      depends:
+        - ppo
+        - puc
+    - id: pap
+      name: Permanently Cloaked
+      category: ability
+      type: cloaked
+      range: 0
+      radius: 0
+      autocast: false
+      costs:
+        - type: passive
+      depends:
+        - pud
+    - id: pai
+      name: Psionic Storm
+      category: ability
+      type: attack
+      range: 9
+      radius: 1.5
+      autocast: false
+      costs:
+        - type: energy
+          energy: 75
+        - type: time
+          time: 3
+      depends:
+        - ppi
+        - put
+    - id: paw
+      name: Archon Warp
+      category: ability
+      type: special
+      range: 0
+      radius: 0
+      autocast: false
+      costs:
+        - type: time
+          time: 12
+      # TODO: need to deal with OR clauses in dependencies
+      depends:
+        - put
+      costs:
+        - type: units
+          units: 2
+    - id: pam
+      name: Phasing Mode
+      category: ability
+      type: special
+      range: 0
+      radius: 3.75
+      autocast: false
+      costs:
+        - type: time
+          time: 2
+      depends:
+        - puw
+    - id: pal
+      name: Cliff Walk
+      category: ability
+      type: special
+      range: 0
+      radius: 0
+      autocast: false
+      costs:
+        - type: passive
+      depends:
+        - puc
+  units:
+    - id: pup
+      category: unit
+      name: Probe
+      depends:
+        - pbn
+      builder: pbn
+      short: p
+      minerals: 50
+      gas: 0
+      time: 17
+      hp: 20
+      shield: 20
+      energy: 0
+      armor: 0
+      weapons:
+        - pwp
+      speed: 2.81
+      acceleration: true
+      vision: 8
+      size: 1
+      supplies: 1
+      types:
+        - harvester
+        - light
+        - mechanical
+    - id: puz
+      category: unit
+      name: Zealot
+      depends:
+        - pbg
+      builder: pbg
+      short: z
+      minerals: 100
+      gas: 0
+      time: 38
+      hp: 100
+      shield: 50
+      energy: 0
+      armor: 1
+      weapons:
+        - pwb
+      speed: 2.25
+      acceleration: false
+      vision: 9
+      size: 2
+      supplies: 2
+      types:
+        - light
+        - biological
+      abilities:
+        - depends:
+          - pac
+          speed: 2.75
+    - id: pus
+      category: unit
+      name: Stalker
+      depends:
+        - pbg
+        - pby
+      builder: pbg
+      short: s
+      minerals: 125
+      gas: 50
+      time: 42
+      hp: 80
+      shield: 80
+      energy: 0
+      armor: 1
+      weapons:
+        - pwd
+      speed: 2.95
+      acceleration: false
+      vision: 10
+      size: 2
+      supplies: 2
+      types:
+        - armored
+        - mechanical
+      abilities:
+        - depends:
+          - pab
+    - id: pue
+      category: unit
+      name: Sentry
+      builder: pbg
+      depends:
+        - pbg
+        - pby
+      short: e
+      minerals: 50
+      gas: 100
+      time: 42
+      hp: 40
+      shields: 40
+      energy: 200
+      armor: 1
+      weapons:
+        - pwe
+      speed: 2.25
+      acceleraton: false
+      vision: 10
+      size: 2
+      supplies: 2
+      types:
+        - light
+        - mechanical
+        - psionic
+      abilities:
+        - depends:
+          - pah
+        - depends:
+          - paf
+        - depends:
+          - pag
+    - id: put
+      name: High Templar
+      category: unit
+      builder: pbg
+      depends:
+        - pbg
+        - pvt
+      short: t
+      minerals: 50
+      gas: 150
+      time: 55
+      hp: 40
+      shields: 40
+      energy: 200
+      armor: 0
+      speed: 1.87
+      acceleration: false
+      vision: 10
+      size: 2
+      supplies: 2
+      types:
+        - light
+        - biological
+        - psionic
+      abilities:
+        - depends:
+          - pae
+        - depends:
+          - pat
+        - depends:
+          - paw
+    - id: pud
+      name: Dark Templar
+      category: unit
+      builder: pbg
+      depends:
+        - pbg
+        - pvd
+      short: d
+      minerals: 125
+      gas: 125
+      time: 55
+      hp: 40
+      shields: 80
+      energy: 0
+      armor: 1
+      weapons:
+        - pww
+      speed: 2.81
+      acceleration: false
+      vision: 8
+      size: 2
+      supplies: 2
+      types:
+        - light
+        - biological
+        - psionic
+      abilities:
+        - depends:
+          - paw
+        - depends:
+          - pap
+    - id: pub
+      name: Observer
+      category: unit
+      builder: pvr
+      depends:
+        - pvr
+      short: b
+      minerals: 50
+      gas: 100
+      time: 40
+      hp: 40
+      shields: 20
+      energy: 0
+      armor: 0
+      speed: 1.87
+      acceleration: true
+      vision: 11
+      size: 0
+      supplies: 1
+      types:
+        - light
+        - mechanical
+      abilities:
+        - depends:
+          - pad
+        - depends:
+          - pao
+          speed: 2.81
+        - depends:
+          - pap
+    - id: puw
+      name: Warp Prism
+      category: unit
+      builder: pvf
+      depends:
+        - pvf
+        - pvb
+      short: w
+      minerals: 200
+      gas: 0
+      time: 50
+      hp: 100
+      shields: 40
+      energy: 0
+      armor: 0
+      speed: 2.5
+      acceleration: false
+      vision: 10
+      size: 8
+      supplies: 2
+      types:
+        - armored
+        - mechanical
+        - psionic
+        - power
+      abilities:
+        - depends:
+          - par
+          speed: 3.37
+        - depends:
+          - pam
+    - id: puc
+      name: Colossus
+      category: unit
+      builder: pvf
+      depends:
+        - pvf
+        - pvb
+      short: c
+      minerals: 300
+      gas: 200
+      time: 75
+      hp: 200
+      shields: 150
+      energy: 0
+      armor: 1
+      speed: 2.25
+      acceleration: false
+      vision: 10
+      size: 8
+      supplies: 6
+      types:
+        - armored
+        - mechanical
+        - massive
+      abilities:
+        - depends:
+          - pat
+        - depends:
+          - pal
+    - id: puv
+      name: Void Ray
+      category: unit
+      builder: pvs
+      depends:
+        - pvs
+        - pbe
+        - pby
+      short: v
+      minerals: 250
+      gas: 150
+      time: 60
+      hp: 150
+      shields: 100
+      energy: 0
+      armor: 0
+      speed: 2.25
+      acceleration: false
+      vision: 10
+      size: 8
+      supplies: 6
+      types:
+        - armored
+        - mechanical
+        - massive
+      abilities:
+        - depends:
+          - pat
+        - depends:
+          - pal
+  tasks:
+terran:
+zerg:
+  weapons:
+    - id: zwc
+      name: Drone Claw
+      category: weapon
+      damage: 5
+      attacks: 1
+      speed: 1.5
+      range: melee
+      targets:
+        - ground
+      depends:
+        - zud
+    - id: zws
+      name: Acid Spines
+      category: weapon
+      damage: 9
+      attacks: 1
+      speed: 1
+      range: 7
+      targets:
+        - air
+      depends:
+        - zuq
+    - id: zwt
+      name: Talons
+      category: weapon
+      damage: 4
+      attacks: 2
+      speed: 1
+      range: 3
+      targets:
+        - ground
+      depends:
+        - zuq
+    - id: zwv
+      name: Volatile Burst
+      category: weapon
+      damage: 20
+      attacks: 1
+      speed: 0.83
+      range: melee
+      targets:
+        - ground
+      depends:
+        - zuq
+    - id: zwz
+      name: Zergling Claws
+      category: weapon
+      damage: 5
+      bonus: 1
+      attacks: 1
+      speed: 0.7
+      range: melee
+      targets: ground
+      depends:
+        - zuz
+  buildings:
+    - id: zbh
+      name: Hatchery
+      category: building
+      short: H
+      minerals: 300
+      gas: 0
+      time: 100
+      hp: 1250
+      shield: 0
+      armor: 1
+      builder: pud
+      depends:
+        - zud
+      types:
+        - basic
+        - economic
+        - producer
+    - id: zbb
+      name: Baneling Nest
+      category: building
+      short: B
+      minerals: 100
+      gas: 50
+      time: 60
+      hp: 850
+      shield: 0
+      armor: 1
+      builder: zud
+      depends:
+        - zud
+        - zbs
+      types:
+        - basic
+        - military
+    - id: zbe
+      name: Extractor
+      category: building
+      short: E
+      type: economic
+      minerals: 25
+      gas: 0
+      time: 30
+      hp: 500
+      shield: 0
+      armor: 1
+      builder: zud
+      depends:
+        - zud
+      types:
+        - basic
+        - refiner
+    - id: zbs
+      name: Spawning Pool
+      category: building
+      short: S
+      type: economic
+      minerals: 200
+      gas: 0
+      time: 65
+      hp: 750
+      shield: 0
+      armor: 1
+      builder: pud
+      depends:
+        - pud
+        - zbh
+  upgrades:
+    - id: zpa
+      name: Adrenal Glands upgrade
+      category: upgrade
+      builder: zbs
+      depends:
+        - zbs
+        - zbi
+      minerals: 200
+      gas: 200
+      time: 130
+    - id: zph
+      name: Centrifugal Hooks upgrade
+      category: upgrade
+      builder: zbb
+      depends:
+        - zbb
+      minerals: 150
+      gas: 150
+      time: 110
+    - id: zpl
+      name: Lair
+      category: upgrade
+      builder: zbh
+      depends:
+        - zbh
+        - zbs
+      minerals: 150
+      gas: 100
+      time: 80
+    - id: zpm
+      name: Metabolic Boost upgrade
+      category: upgrade
+      builder: zbs
+      depends:
+        - zbs
+      minerals: 100
+      gas: 100
+      time: 110
+    - id: zpp
+      name: Pneumatized Carapace upgrade
+      category: upgrade
+      builder: zbh
+      depends:
+        - zbh
+        - zbl
+      minerals: 100
+      gas: 100
+      time: 60
+    - id: zpv
+      name: Ventral Sacs upgrade
+      category: upgrade
+      builder: zbh
+      depends:
+        - zbh
+        - zbl
+      minerals: 200
+      gas: 200
+      time: 130
+  abilities:
+    - id: zaa
+      name: Adrenal Glands
+      category: ability
+      type: attack_speed
+      autocast: false
+      costs:
+        - type: passive
+      depends:
+        - zpa
+        - zuz
+    - id: zab
+      name: Morph to Baneling
+      category: ability
+      type: special
+      autocast: false
+      costs:
+        - type: minerals
+          minerals: 25
+        - type: gas
+          gas: 25
+        - type: time
+          time: 20
+      depends:
+        - zuz
+    - id: zac
+      name: Spawn Changeling
+      category: ability
+      type: special
+      autocast: false
+      range: 0
+      radius: 0
+      costs:
+        - type: energy
+          energy: 50
+      depends:
+        - zuo
+    - id: zad
+      name: Detector
+      category: ability
+      range: 0
+      radius: 0
+      autocast: false
+      depends:
+        - zuo
+      costs:
+        - type: passive
+    - id: zae
+      name: Contaminate
+      category: ability
+      type: special
+      autocast: false
+      range: 3
+      radius: 0
+      costs:
+        - type: energy
+          energy: 75
+      depends:
+        - zuo
+    - id: zag
+      name: Generate Creep
+      category: ability
+      type: special
+      autocast: false
+      costs:
+        - type: passive
+      depends:
+        - zuv
+    - id: zah
+      name: Centrifugal Hooks
+      category: ability
+      type: speed
+      autocast: false
+      range: 0
+      radius: 0
+      costs:
+        - type: passive
+      depends:
+        - zpd
+        - zpl
+        - zub
+    - id: zam
+      name: Metabolic Boost
+      category: ability
+      type: speed
+      autocast: false
+      costs:
+        - type: passive
+      depends:
+        - zpm
+        - zuz
+    - id: zao
+      name: Morph to Overseer
+      category: ability
+      type: special
+      autocast: false
+      costs:
+        - type: minerals
+          minerals: 50
+        - type: gas
+          gas: 100
+        - type: time
+          time: 17
+      depends:
+        - zuv
+    - id: zap
+      name: Pneumatized Carapace
+      category: ability
+      type: speed
+      autocast: false
+      costs:
+        - type: passive
+      depends:
+        - zpp
+        - zuv
+    - id: zat
+      name: Infested Terran
+      category: ability
+      type: special
+      autocast: false
+      costs:
+        - type: energy
+          energy: 100
+      depends:
+        - zuo
+    - id: zav
+      name: Ventral Sacs
+      category: ability
+      type: special
+      autocast: false
+      costs:
+        - type: passive
+      depends:
+        - zpv
+        - zuv
+  units:
+    - id: zub
+      name: Baneling
+      category: unit
+      depends:
+        - zuz
+        - zbb
+      builder: zuz
+      short: e
+      minerals: 25
+      gas: 25
+      time: 20
+      hp: 30
+      shield: 0
+      energy: 0
+      armor: 0
+      weapons:
+        - zwv
+      speed: 2.5
+      acceleration: false
+      vision: 8
+      size: 2
+      supplies: 0.5
+      types:
+        - biological
+      abilities:
+        - depends:
+          - zah
+          speed: 2.95
+    - id: zud
+      name: Drone
+      category: unit
+      depends:
+        - zbh
+      builder: zbh
+      short: d
+      minerals: 50
+      gas: 0
+      time: 17
+      hp: 40
+      shield: 0
+      energy: 0
+      armor: 0
+      weapons:
+        - zwc
+      speed: 2.81
+      acceleration: true
+      vision: 8
+      size: 1
+      supplies: 1
+      types:
+        - harvester
+        - light
+        - mechanical
+    - id: zuo
+      name: Overseer
+      category: unit
+      depends:
+        - zuv
+        - zpl
+      builder: zuv
+      short: d
+      minerals: 50
+      gas: 100
+      time: 17
+      hp: 200
+      shield: 0
+      energy: 200
+      armor: 1
+      speed: 1.87
+      acceleration: true
+      vision: 11
+      size: 1
+      supplies: 0
+      types:
+        - detector
+        - armored
+        - biological
+      abilities:
+        - depends:
+          - zap
+          speed: 2.75
+    - id: zuq
+      name: Queen
+      category: unit
+      depends:
+        - zbh
+        - zbs
+      builder: zbh
+      short: q
+      minerals: 150
+      gas: 0
+      time: 50
+      hp: 175
+      shield: 0
+      energy: 100
+      armor: 1
+      weapons:
+        - zwt
+        - zws
+      speed: 1.5
+      acceleration: false
+      vision: 9
+      size: 2
+      supplies: 2
+      types:
+        - queen
+        - biological
+        - psionic
+    - id: zuv
+      name: Overlord
+      category: unit
+      depends:
+        - zbh
+      builder: zbh
+      short: v
+      minerals: 100
+      gas: 0
+      time: 25
+      hp: 200
+      shield: 0
+      energy: 0
+      armor: 0
+      speed: 0.46
+      acceleration: true
+      vision: 11
+      size: 8
+      supplies: 0
+      provides: 8
+      types:
+        - armored
+        - biological
+        - supplier
+    - id: zuz
+      name: Zergling
+      category: unit
+      depends:
+        - zbh
+        - zbs
+      builder: zbh
+      short: z
+      minerals: 50
+      gas: 0
+      time: 24
+      hp: 35
+      shield: 0
+      energy: 0
+      armor: 0
+      weapons:
+        - zwz
+      speed: 2.95
+      acceleration: false
+      vision: 8
+      size: 1
+      supplies: 0.5
+      types:
+        - light
+        - biological
+      abilities:
+        - depends:
+          - zam
+          speed: 4.69
+        - depends:
+          - zaa
+          attack_speed: 0.59
+  tasks:

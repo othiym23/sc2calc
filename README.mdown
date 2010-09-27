@@ -1,0 +1,74 @@
+What is this thing?
+===================
+
+Right now, not much -- a set of libraries for simulating StarCraft II build
+orders, a data file with some (but not all) of the unit data for the Zerg
+and Protoss inventories, and a set of RSpec tests.
+
+However, this is under active and rapid development right now, and my goal is
+to very shortly have all of the unit data entered, the simulator tested and
+debugged, and then start working towards my real goal -- an optimizer that
+uses some simple dynamic programming and AI techniques to generate optimal
+build orders for given strategies.
+
+What's done?
+============
+
+The basic resource model is sound but not tested against real SC2 play, so
+the assumptions underlying the timing of resource gathering and building placement (which does have a tangible impact on the build order) are still
+educated guesses rather than having been tuned by real play.
+
+Within those bounds, mineral and gas harvesting are working, supply caps are
+enforced, and the inventory management class can automatically generate a
+skeletal (without workers + supply unit addition) build order based on the
+dependencies expressed in the data file (i.e. that information isn't hard-
+coded). There's no front-end, but run from inside irb it's already possible
+to poke around with things and learn some interesting things.
+
+Due to a byproduct of how the scheduling algorithms work, the library will
+automatically reorder the construction of some units based on resource
+availability automatically. This is neat, but it isn't the same as the
+optimizer.
+
+What remains to be done?
+========================
+
+ - Finish entering Protoss data (about 80% complete right now).
+ - Finish entering Zerg data (about 30% complete right now).
+ - Enter Terran data.
+ - Specialize the relevant bits of the resource calculation models for
+   the different races.
+ - Add support for economic abilities like Chrono Boost, Spawn Larvae,
+   and the MULE Calldown.
+ - Write the worker + supply optimizer.
+ - Add all of the slots to producers so that units can be queued to be built
+   when their resources are available rather than when the producer is idle,
+   while respecting the queue caps on each producer.
+ - Write a simple front-end that allows you to express both complete builds
+   for calculation as well as goals such as, "2 Colossi with range 
+   enhancement" that can then be further tailored.
+ - Write user documentation (see the specs as well as
+   doc/sample-starcraft-runs.rb for now).
+ - Figure out how to incorporate information about changes to units from
+   balance patches in a non-poochy way.
+
+How can I use this?
+===================
+
+Go wild, folks. This was done to satisfy my own curiosity and help me become
+a better StarCraft II player. As such, it's distributed under a Simplified
+BSD License, which asks only that if you credit me if you decide to
+incorporate it into your own software. If you find it useful, please let
+me know, and of course I'm happy to fix any bugs you may find.
+
+Also, I took the unit data and calculation from a number of sources:
+
+ - Obviously, much of this stuff is ™ and © Blizzard, and all rights are
+   reserved by them. Also, their game is pretty good, so they deserve
+   credit for that too.
+ - Much of the original unit data was taken from Brady Games' official
+   StarCraft II Strategy Guide.
+ - Further unit details and information about resource gathering times were
+   derived from information posted on the Team Liquid Liquipedia at
+   http://wiki.teamliquid.net/starcraft2/Main_Page, which everyone serious
+   about getting better at SC2 should both use and contribute to.

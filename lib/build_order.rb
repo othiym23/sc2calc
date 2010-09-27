@@ -278,6 +278,10 @@ class BuildOrder
     @minerals.consumed_at_time(time)
   end
 
+  def gas_consumed_at_time(time)
+    @gas.consumed_at_time(time)
+  end
+
   def dump_mineral_queue
     @minerals.dump_harvester_counts
   end

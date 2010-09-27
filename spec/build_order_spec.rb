@@ -15,6 +15,12 @@ describe BuildOrder do
       @build.time_at_minerals(50).should == 0
     end
 
+    it "should start with 0 gas" do
+      @build.gas_at_time(0).should == 0
+      @build.time_at_gas(0).should == 0
+      @build.gas_consumed_at_time(0).should == 0
+    end
+
     it "should harvest 80 minerals in 8 seconds" do
       @build.minerals_at_time(8).should == 80
       @build.time_at_minerals(80).should == 8

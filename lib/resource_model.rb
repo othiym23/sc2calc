@@ -177,8 +177,7 @@ class ResourceModel < ConsumerModel
   end
 
   def add_harvester(time)
-    update_queue(@harvesters, time, 1)
-    log_event([time, 'add_harvester', @harvesters[time]])
+    add_harvesters(time, 1)
   end
 
   def add_harvesters(time, count)
@@ -215,9 +214,5 @@ class ResourceModel < ConsumerModel
 
   def time_to_resource(time, harvester_count)
     (time.to_f / @trip_time.to_f * harvester_count.to_f * @per_trip.to_f).floor
-  end
-
-  def total_consumed(resource_queue)
-    accumulate(resource_queue, resource_queue.keys)
   end
 end

@@ -18,7 +18,7 @@ describe RacialInventory do
         end
       end
     end
-    
+
     def ensure_costed_dependency(race_list, attribute)
       race_list.each do |race|
         race.all_units.each do |unit_id|
@@ -87,7 +87,7 @@ describe RacialInventory do
       cost_types.sort.uniq.should  == ['energy', 'gas', 'minerals', 'passive', 'time', 'units']
     end
   end
-  
+
   describe "for all suppliers" do
     it "should provide more than 0 supply" do
       inventory = @all_races.map { |race| race.all_units.map { |unit_id| race.lookup(unit_id) } }.flatten

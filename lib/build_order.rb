@@ -17,11 +17,6 @@ class InvalidEconomyError < StandardError ; end
 #    - Z consumes builder, permanently removes from other queue.
 # 4. See if any units have finished building.
 
-# Units can only start building if:
-#  - their dependencies are available.
-#  - enough minerals have accrued.
-#  - enough gas has accrued.
-
 # QUEUES:
 # 1. Mining workers.
 # 2. Refinery workers.
@@ -117,11 +112,12 @@ class BuildOrder
     @gas.logger = self
 
     @supply = SupplyModel.new(10, 6)
+    @supply.logger = self
 
     @producer_list = {}
     @producer_list.default = []
     @producer_list['pbn'] += [ Producer.new(@info.lookup('pbn')) ]
-    6.times { @producer_list['pup'] += [Producer.new(@info.lookup('pup'))] }
+    6.times { @producer_list['pup'] += [ Producer.new(@info.lookup('pup')) ] }
 
     @built = {}
     @built.default = []
@@ -349,7 +345,7 @@ class BuildOrder
 
   def consume_gas(time, unit)
     available_gas = @gas.at_time(time)
-    if unit['gas'] > gas_at_time(time)
+    if unit['gas'] > available_gas
       raise(InvalidEconomyError, "The Starcraft economy does not allow deficit spending (deficit of #{unit['gas'] - available_gas} gas at #{time} seconds).")
     end
 

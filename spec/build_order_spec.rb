@@ -275,7 +275,7 @@ describe BuildOrder do
         end
       end
     end
-    
+
     describe "when building with both minerals and gas" do
       before :each do
         @build = BuildOrder.queue_up_build(@protoss, ['pba', 'pbe', 'pbg', 'pby', 'puz', 'pus'])

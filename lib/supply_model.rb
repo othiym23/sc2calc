@@ -1,6 +1,6 @@
-require 'abstract_resource_model'
+require 'consumer_model'
 
-class SupplyModel < AbstractResourceModel
+class SupplyModel < ConsumerModel
   attr_accessor :logger
 
   COPIOUS_DEBUGGING = false

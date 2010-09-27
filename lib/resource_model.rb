@@ -1,6 +1,6 @@
-require 'abstract_resource_model'
+require 'consumer_model'
 
-class ResourceModel < AbstractResourceModel
+class ResourceModel < ConsumerModel
   attr_accessor :logger
   attr_reader :trip_time, :per_trip, :initial
 

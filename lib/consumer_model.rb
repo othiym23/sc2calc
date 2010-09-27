@@ -1,4 +1,4 @@
-class AbstractResourceModel
+class ConsumerModel
   attr_accessor :logger
 
   def initialize(used)

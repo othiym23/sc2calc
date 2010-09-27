@@ -1,20 +1,19 @@
-require 'sparse_queue_helper'
+require 'abstract_resource_model'
 
-class ResourceModel
-  include SparseQueueHelper
-
+class ResourceModel < AbstractResourceModel
   attr_accessor :logger
   attr_reader :trip_time, :per_trip, :initial
 
   COPIOUS_DEBUGGING = false
 
   def initialize(type, trip_time, per_trip, start_harvesters = 0, start_amount = 0)
+    super({})
+
     @type      = type
     @trip_time = trip_time
     @per_trip  = per_trip
 
     @harvesters = {}
-    @used  = {}
 
     if start_harvesters > 0
       @harvesters[0] = start_harvesters
@@ -171,8 +170,8 @@ class ResourceModel
       raise(InvalidEconomyError, "The Starcraft economy does not allow deficit spending (deficit of #{amount - available}  at #{time} seconds).")
     end
 
-    updated_amount = (@used[time] || 0) + amount
-    @used[time] = updated_amount
+    updated_amount = (used[time] || 0) + amount
+    used[time] = updated_amount
     puts "[DEBUG] #{updated_amount}/#{available} used at #{time} seconds." if COPIOUS_DEBUGGING
     log_event([time, "#{@type}_used", "#{updated_amount}/#{available}"])
   end
@@ -206,10 +205,6 @@ class ResourceModel
     dump_queue(@harvesters)
   end
 
-  def dump_used
-    dump_queue(@used)
-  end
-
   def harvesters_at_time(time)
     most_recent_in_queue(@harvesters, time)
   end
@@ -224,59 +219,5 @@ class ResourceModel
 
   def total_consumed(resource_queue)
     accumulate(resource_queue, resource_queue.keys)
-  end
-
-  def consumed_at_time(time)
-    accumulate(@used, @used.keys.select { |v| v <= time })
-  end
-
-  def consumed_after_time(time)
-    accumulate(@used, @used.keys.select { |v| v > time })
-  end
-
-  def consumed_in_interval(start, finish)
-    accumulate(@used, @used.keys.select { |v| (start...finish).include?(v) })
-  end
-
-  def accumulate(sparse_queue, tick_list)
-    tick_list.collect { |v| sparse_queue[v] }.inject { |c,v| c + v } || 0
-  end
-
-  def update_queue(sparse_queue, time, amount)
-    if sparse_queue.has_key?(time)
-      sparse_queue[time] += amount
-    else
-      sparse_queue[time] = most_recent_in_queue(sparse_queue, time) + amount
-    end
-  end
-
-  def intervals_at_time(queue, time)
-    queue.keys.select { |event_tick| event_tick < time }.sort + [time]
-  end
-
-  # It's surprising that Ruby provides so little support for summing over
-  # irregular intervals. This function produces a list of pairs that represent
-  # intervals.
-  def generate_pairs(point_array)
-    pair_list = []
-
-    point_array.each_index do |index|
-      this_point = point_array[index]
-      next_point = point_array[index + 1]
-
-      if next_point
-        pair_list << [this_point, next_point]
-      end
-    end
-
-    pair_list
-  end
-  
-  def dump_queue(queue)
-    queue.keys.sort.map {|time| "#{Time.at(time).strftime("%M:%S")}: #{queue[time]}"}.join("\n")
-  end
-
-  def log_event(event)
-    @logger.log_event(event) if @logger
   end
 end

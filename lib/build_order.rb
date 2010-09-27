@@ -80,8 +80,6 @@ class Producer < Built
 end
 
 class BuildOrder
-  include SparseQueueHelper
-
   attr_reader :supply_queue, :supply_used, :built
 
   COPIOUS_DEBUGGING = false

@@ -162,16 +162,20 @@ class BuildOrder
     @gas.harvesters_at_time(time)
   end
 
-  def supplies_available_at_time(time)
-    @supply.available_at_time(time)
+  def supplies_total_at_time(time)
+    @supply.total_at_time(time)
   end
 
   def supplies_used_at_time(time)
     @supply.used_at_time(time)
   end
 
+  def time_at_supplies(supply)
+    @supply.at_resource(supply)
+  end
+
   def get_log_string
-    @event_log.sort { |a,b| a[0] <=> b[0] }.map { |event| "#{Time.at(event[0]).strftime("%M:%S")}: M: #{"%4d" % minerals_at_time(event[0])} G: #{"%4d" % gas_at_time(event[0])} #{supplies_used_at_time(event[0])}/#{supplies_available_at_time(event[0])} #{event[1]} #{event[2]}"}.join("\n")
+    @event_log.sort { |a,b| a[0] <=> b[0] }.map { |event| "#{Time.at(event[0]).strftime("%M:%S")}: M: #{"%4d" % minerals_at_time(event[0])} G: #{"%4d" % gas_at_time(event[0])} #{supplies_used_at_time(event[0])}/#{supplies_total_at_time(event[0])} #{event[1]} #{event[2]}"}.join("\n")
   end
 
   # TODO: make this method less stateful (i.e. it should be possible to
@@ -223,12 +227,16 @@ class BuildOrder
                                     minerals_at_time(finish_time),
                                     gas_at_time(finish_time),
                                     supplies_used_at_time(finish_time),
-                                    supplies_available_at_time(finish_time))
+                                    supplies_total_at_time(finish_time))
     end
 
     build_order.sort { |a,b| a.start_time <=> b.start_time }
   end
 
+  # Units can only start building if:
+  #  - their dependencies are available.
+  #  - enough minerals have accrued.
+  #  - enough gas has accrued.
   def earliest_start_for(unit)
     builder = earliest_builder_for_unit(unit)
     puts "[DEBUG] #{unit['name']}: Builder is #{builder.unit['name']}." if COPIOUS_DEBUGGING
@@ -244,19 +252,28 @@ class BuildOrder
     end
     puts "[DEBUG] #{unit['name']}: Earliest #{builder.unit['name']} is available at #{builder_start_time} seconds." if COPIOUS_DEBUGGING
 
-    dependencies_satisfied = time_dependencies_satisfied_for(unit)
-    puts "[DEBUG] #{unit['name']}: All unit dependencies will be satisfied at #{dependencies_satisfied} seconds." if COPIOUS_DEBUGGING
-
     minerals_satisfied     = time_at_minerals(unit['minerals'])
     puts "[DEBUG] #{unit['name']}: #{unit['minerals']} minerals will be available at #{minerals_satisfied}." if COPIOUS_DEBUGGING
 
     gas_satisfied          = time_at_gas(unit['gas'])
     puts "[DEBUG] #{unit['name']}: #{unit['gas']} gas will be available at #{gas_satisfied}." if COPIOUS_DEBUGGING
 
+    if unit['category'] == 'unit'
+      supplies_satisfied   = time_at_supplies(unit['supplies'])
+      puts "[DEBUG] #{unit['name']}: #{unit['supplies']} supplies will be available at #{supplies_satisfied}." if COPIOUS_DEBUGGING
+    else
+      supplies_satisfied   = 0
+      puts "[DEBUG] #{unit['name']}: doesn't consume supply." if COPIOUS_DEBUGGING
+    end
+
+    dependencies_satisfied = time_dependencies_satisfied_for(unit)
+    puts "[DEBUG] #{unit['name']}: All unit dependencies will be satisfied at #{dependencies_satisfied} seconds." if COPIOUS_DEBUGGING
+
     earliest_satisfied = [ builder_start_time,
                            dependencies_satisfied,
                            minerals_satisfied,
-                           gas_satisfied ].max
+                           gas_satisfied,
+                           supplies_satisfied ].max
     puts "[INFO] #{unit['name']}: Earliest time all build constraints are satisfied is #{earliest_satisfied}." if COPIOUS_DEBUGGING
 
     earliest_satisfied
@@ -340,6 +357,11 @@ class BuildOrder
   end
 
   def consume_supply(time, unit)
+    available_supply = @supply.available_at_time(time)
+    if unit['supplies'] > available_supply
+      raise(DependencyError, "You require additional pylons! (#{unit['supplies']} requested, #{available_supply} available).")
+    end
+
     @supply.consume(unit['supplies'], time)
   end
 

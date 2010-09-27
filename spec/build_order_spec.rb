@@ -299,5 +299,32 @@ describe BuildOrder do
         end
       end
     end
+
+    describe "when dealing with supply" do
+      it "shouldn't allow building 11 probes on 10 supply" do
+        @probe = @protoss.lookup('pup')
+        # 7 / 10
+        @build.enqueue_unit(@probe)
+        # 8 / 10
+        @build.enqueue_unit(@probe)
+        # 9 / 10
+        @build.enqueue_unit(@probe)
+        # 10 / 10
+        @build.enqueue_unit(@probe)
+        # 11 / 10 -- should raise error
+        @build.enqueue_unit(@probe)
+        lambda { @build.calculate }.should raise_error(DependencyError)
+      end
+
+      it "should properly handle deferred availability of supply providers" do
+        @build = BuildOrder.queue_up_build(@protoss, ['pup', 'pup', 'pup', 'pbe', 'pup', 'pup', 'pbg', 'puz']) ; nil
+        lambda { @build.calculate }.should_not raise_error(DependencyError)
+      end
+
+      it "should still enforce cap properly" do
+        @build = BuildOrder.queue_up_build(@protoss, ['pup', 'pup', 'pup', 'pbe', 'pup', 'pup', 'pbg', 'puz', 'puz', 'puz', 'puz', 'puz']) ; nil
+        lambda { @build.calculate }.should raise_error(DependencyError)
+      end
+    end
   end
 end

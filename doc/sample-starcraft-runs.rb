@@ -126,3 +126,25 @@ puts @build.dump_supply_queue ; nil
 puts @build.dump_mineral_used ; nil
 puts @build.dump_gas_used ; nil
 puts @build.dump_supply_used ; nil
+
+# dealing with supply cap (simple case)
+$:.unshift("lib/")
+require 'build_order'
+@protoss = RacialInventory.new('protoss', 'data/sc2.yml') ; nil
+@build = BuildOrder.queue_up_build(@protoss, ['pup', 'pup', 'pup', 'pup', 'pup'])
+@build_order = @build.calculate ; nil
+BuildOrderPrinter.print(@build_order) ; nil
+puts @build.get_log_string ; nil
+puts @build.dump_supply_queue ; nil
+puts @build.dump_supply_used ; nil
+
+# dealing with supply cap (less simple case)
+$:.unshift("lib/")
+require 'build_order'
+@protoss = RacialInventory.new('protoss', 'data/sc2.yml') ; nil
+@build = BuildOrder.queue_up_build(@protoss, ['pup', 'pup', 'pup', 'pbe', 'pup', 'pup', 'pbg', 'puz',]) ; nil
+@build_order = @build.calculate ; nil
+BuildOrderPrinter.print(@build_order) ; nil
+puts @build.get_log_string ; nil
+puts @build.dump_supply_queue ; nil
+puts @build.dump_supply_used ; nil

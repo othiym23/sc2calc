@@ -276,7 +276,7 @@ class ResourceModel
     queue.keys.sort.map {|time| "#{Time.at(time).strftime("%M:%S")}: #{queue[time]}"}.join("\n")
   end
 
-  def log_event(*args)
-    @logger.log_event(args) if @logger
+  def log_event(event)
+    @logger.log_event(event) if @logger
   end
 end

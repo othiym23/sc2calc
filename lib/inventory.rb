@@ -8,8 +8,8 @@ class RacialInventory
   end
 
   def dependency_queue(unit_id)
-    if current_unit = @inventory[unit_id]
-      dep_helper([unit_id], [])
+    if @inventory[unit_id]
+      visit(unit_id, [], [])
     else
       []
     end
@@ -43,14 +43,15 @@ class RacialInventory
 
   private
 
-  def dep_helper(dependency_list, stack)
-    dependency_list.each do |unit_id|
-      unit = @inventory[unit_id] || puts("[ERROR] no unit for id #{unit_id}")
-      dep_helper(unit['depends'], stack) if unit.has_key?('depends')
-      stack.push(unit_id) unless stack.include?(unit_id)
+  def visit(unit_id, l, visited)
+    unless visited.include?(unit_id)
+      visited.push(unit_id)
+      lookup(unit_id)['depends'].each do |dependent_id|
+        visit(dependent_id, l, visited)
+      end
+      l.push(unit_id)
     end
-
-    stack
+    l
   end
 
   def build_inventory(race, source_data)
